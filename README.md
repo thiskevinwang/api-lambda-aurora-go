@@ -67,6 +67,7 @@ Application code
 - [ ] Introduce background tasks
     - AWS SQS
 - [ ] Turn this all into a generator CLI.
+- [ ] Consider `nixos` for reproducible environments (ex. provide `docker`, `terraform`, `waypoint`, etc.)
 
 
 ### 12-factor?
