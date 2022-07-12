@@ -58,11 +58,14 @@ Application code
 - [ ] Testing
     - Unit testing
     - Integration testing in GitHub actions
+    - Consider [localstack](https://localstack.cloud/)
 - [ ] Make persistence layer configurable
     - Postgres
     - DynamoDB
     - Redis
     - etc.
+- [ ] Introduce background tasks
+    - AWS SQS
 - [ ] Turn this all into a generator CLI.
 
 
