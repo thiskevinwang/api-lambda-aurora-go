@@ -1,0 +1,7 @@
+# ignore waypoint files
+.waypoint*
+waypoint-restore.db
+data.db
+
+# ignore terraform files
+.terraform*

@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Weights API
+  description: |
+    API for any client to post bluetooth scale data to.
+    The end-to-end usage is:
+    1. App + [Tindeq](https://tindeq.com/) bluetooth scale
+    2. POST to API
+    3. Do whatever with the data.
+
+  version: 0.1.0-rc.1
+servers:
+  - url: "http://localhost:8080"
+paths:
+  "/weights":
+    post:
+      summary: Write a batch of weight entries
+      description: Write a batch of weight entries
+      requestBody:
+        description: TODO
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch_id:
+                  type: string
+                batch:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/BatchItem"
+
+      responses:
+        "200":
+          description: Success
+        "404":
+          description: Error
+
+  "/weights/:batch_id":
+    get:
+      summary: List weight entries by batch_id
+      description: List weight entries by `batch_id`
+      parameters:
+        - name: id
+          in: path
+          description: ID of region to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  batch_id:
+                    type: string
+                  batch:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/BatchItem"
+        "404":
+          description: Error
+
+components:
+  schemas:
+    BatchItem:
+      type: object
+      properties:
+        w:
+          type: number
+          format: float
+        t:
+          type: integer
+          format: int64
+    Entry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        batch_id:
+          type: string
+        timestamp_micro:
+          type: integer
+          format: int64
+        weight_lb:
+          type: number
+          format: float
