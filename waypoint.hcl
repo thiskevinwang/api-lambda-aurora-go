@@ -1,6 +1,6 @@
-project = "go"
+project = "api-lambda-aurora-go"
 
-app "gin" {
+app "api-lambda-aurora-go" {
   build {
     use "docker" {
       buildkit = true
@@ -76,5 +76,5 @@ variable "DB_PORT" {
 
 variable "AUTH_TOKEN" {
   type = string
-  // default = "FIXME"
+  default = "bork"
 }

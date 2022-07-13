@@ -12,7 +12,7 @@
 - HTTP API written in [`go`]
     - Framework: [`gin`]
     - ORM: [`gorm`]
-    - API Docs: [``]
+    - API Docs: [`redocly`]
 - Infrastructure via [`terraform`]
     - 1 x Aurora Serverless V2 (Postgres)
 - Build, deploy, release via [`waypoint`]
@@ -33,6 +33,16 @@ docker compose build && docker compose up
 ```
 
 ### Production
+
+> **Warning**: There is an expected one-time set up of various
+> Terraform Cloud things, such as an organization, workspace,
+> and variables (ex. AWS credentials and VPC IDs).
+>
+> **Variable sets** are a newer and powerful option to use here. 
+> Currently the API documentation is a bit rough to reference, and 
+> there isn't a CLI option, so manual click-ops should suffice.
+>
+> ![variable-sets](./docs/variable-sets.png)
 
 > **Note**: See [`Makefile`](./Makefile) for commands to deploy.
 
