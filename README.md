@@ -12,9 +12,10 @@
 - HTTP API written in [`go`]
     - Framework: [`gin`]
     - ORM: [`gorm`]
-    - API Docs: [`redocly`]
+    - API Docs: `redocly`
 - Infrastructure via [`terraform`]
     - 1 x Aurora Serverless V2 (Postgres)
+        - This currently reuses an existing VPC and Security Group.
 - Build, deploy, release via [`waypoint`]
     - Builds via [`docker`]
     - Deploys to AWS Lambda

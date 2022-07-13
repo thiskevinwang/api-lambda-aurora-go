@@ -4,6 +4,11 @@ PORT=8080
 DEV_CMD?=docker compose build && docker compose up
 WP_CMD?="$$GOPATH/bin/waypoint"
 
+
+.PHONY: shell
+shell:
+	@nix-shell -p terraform waypoint docker
+
 .PHONY: dev
 dev:
 	@echo " => Running $(IMAGE_NAME) in development mode"
@@ -19,13 +24,21 @@ run:
 	@echo " => Running $(IMAGE_NAME):$(IMAGE_TAG) on PORT $(PORT)"
 	docker run --rm -it --tty -e PORT=$(PORT) -p $(PORT):$(PORT) $(IMAGE_NAME):$(IMAGE_TAG)
 
-.PHONY: init
-init:
-	@echo " => Initializing $(IMAGE_NAME)"
+.PHONY: wp-nit
+wp-init:
+	@echo " => Initializing Waypoint"
 	@$(WP_CMD) init
 
-.PHONY: up
+.PHONY: tf-init
+tf-init:
+	@echo " => Initializing Terraform"
+	@terraform -chdir=terraform init
+.PHONY: tf-workspace
+tf-workspace-new:
+	@echo " => Creating new Terraform workspace"
+	@terraform workspace new api-lambda-aurora-go
 
+.PHONY: up
 # Makefile needs extra `$` for cmd interpolation
 up:
 	@echo " => Deploying $(IMAGE_NAME)"
